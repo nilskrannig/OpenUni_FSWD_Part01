@@ -43,6 +43,7 @@ function App() {
       <DisplayValue name='good' value={good} />
       <DisplayValue name='neutral' value={neutral} />
       <DisplayValue name='bad' value={bad} />
+      <DisplayValue name='total' value={good + neutral + bad}/>
     </div>
   )
 }
