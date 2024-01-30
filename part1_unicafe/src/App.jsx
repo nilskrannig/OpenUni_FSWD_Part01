@@ -43,9 +43,23 @@ function App() {
       <DisplayValue name='good' value={good} />
       <DisplayValue name='neutral' value={neutral} />
       <DisplayValue name='bad' value={bad} />
-      <DisplayValue name='total' value={good + neutral + bad}/>
+      <DisplayValue name='all' value={getTotalNumberOfVotes()}/>
+      <DisplayValue name='average' value={getAverage()}/>
+      <DisplayValue name='positive' value={getPositive() + ' %'}/>
     </div>
   )
+
+  function getPositive() {
+    return (good / getTotalNumberOfVotes()) * 100;
+  }
+
+  function getAverage() {
+    return (good * 1 + neutral * 0 + bad * -1) / getTotalNumberOfVotes();
+  }
+
+  function getTotalNumberOfVotes() {
+    return good + neutral + bad;
+  }
 }
 
 export default App
