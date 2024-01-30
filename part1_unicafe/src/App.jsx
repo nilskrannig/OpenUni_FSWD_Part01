@@ -7,33 +7,42 @@ const Button = ({ onClick, buttonText }) => {
 };
 
 const StatisticLine = ({ name, value }) => {
-  return <div>
-    {name} {value}
-  </div>
+  return <tr>
+    <td>
+      {name}
+    </td>
+    <td>
+      {value}
+    </td>
+  </tr>
 }
 
-const Statistics = ({good, neutral, bad}) => {
+const Statistics = ({ good, neutral, bad }) => {
   function getPositive() {
-    return (good / getTotalNumberOfVotes()) * 100;
+    const percentageOfPositiveVotes = (good / getTotalNumberOfVotes()) * 100;
+    return percentageOfPositiveVotes.toFixed(2);
   }
 
   function getAverage() {
-    return (good * 1 + neutral * 0 + bad * -1) / getTotalNumberOfVotes();
+    const average = (good * 1 + neutral * 0 + bad * -1) / getTotalNumberOfVotes();
+    return average.toFixed(1);
   }
 
   function getTotalNumberOfVotes() {
     return good + neutral + bad;
   }
 
-  if(getTotalNumberOfVotes()) {
-    return <div>
-      <StatisticLine name='good' value={good} />
-      <StatisticLine name='neutral' value={neutral} />
-      <StatisticLine name='bad' value={bad} />
-      <StatisticLine name='all' value={getTotalNumberOfVotes()} />
-      <StatisticLine name='average' value={getAverage()} />
-      <StatisticLine name='positive' value={getPositive() + ' %'} />
-    </div>
+  if (getTotalNumberOfVotes()) {
+    return <table>
+      <tbody>
+        <StatisticLine name='good' value={good} />
+        <StatisticLine name='neutral' value={neutral} />
+        <StatisticLine name='bad' value={bad} />
+        <StatisticLine name='all' value={getTotalNumberOfVotes()} />
+        <StatisticLine name='average' value={getAverage()} />
+        <StatisticLine name='positive' value={getPositive() + ' %'} />
+      </tbody>
+    </table>
   }
 
   return <div>
@@ -70,7 +79,7 @@ function App() {
       <Button onClick={handleNeutral} buttonText='neutral' />
       <Button onClick={handleBad} buttonText='bad' />
       <Title title='statistics' />
-      <Statistics good={good} neutral={neutral} bad={bad}/>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
