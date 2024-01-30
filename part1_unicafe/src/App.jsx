@@ -6,7 +6,7 @@ const Button = ({ onClick, buttonText }) => {
   return <button onClick={onClick}>{buttonText}</button>
 };
 
-const DisplayValue = ({ name, value }) => {
+const StatisticLine = ({ name, value }) => {
   return <div>
     {name} {value}
   </div>
@@ -27,12 +27,12 @@ const Statistics = ({good, neutral, bad}) => {
 
   if(getTotalNumberOfVotes()) {
     return <div>
-      <DisplayValue name='good' value={good} />
-      <DisplayValue name='neutral' value={neutral} />
-      <DisplayValue name='bad' value={bad} />
-      <DisplayValue name='all' value={getTotalNumberOfVotes()} />
-      <DisplayValue name='average' value={getAverage()} />
-      <DisplayValue name='positive' value={getPositive() + ' %'} />
+      <StatisticLine name='good' value={good} />
+      <StatisticLine name='neutral' value={neutral} />
+      <StatisticLine name='bad' value={bad} />
+      <StatisticLine name='all' value={getTotalNumberOfVotes()} />
+      <StatisticLine name='average' value={getAverage()} />
+      <StatisticLine name='positive' value={getPositive() + ' %'} />
     </div>
   }
 
