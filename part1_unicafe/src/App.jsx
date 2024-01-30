@@ -25,14 +25,21 @@ const Statistics = ({good, neutral, bad}) => {
     return good + neutral + bad;
   }
 
+  if(getTotalNumberOfVotes()) {
+    return <div>
+      <DisplayValue name='good' value={good} />
+      <DisplayValue name='neutral' value={neutral} />
+      <DisplayValue name='bad' value={bad} />
+      <DisplayValue name='all' value={getTotalNumberOfVotes()} />
+      <DisplayValue name='average' value={getAverage()} />
+      <DisplayValue name='positive' value={getPositive() + ' %'} />
+    </div>
+  }
+
   return <div>
-    <DisplayValue name='good' value={good} />
-    <DisplayValue name='neutral' value={neutral} />
-    <DisplayValue name='bad' value={bad} />
-    <DisplayValue name='all' value={getTotalNumberOfVotes()} />
-    <DisplayValue name='average' value={getAverage()} />
-    <DisplayValue name='positive' value={getPositive() + ' %'} />
+    <p>No feedback given</p>
   </div>
+
 }
 
 
